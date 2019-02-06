@@ -37,7 +37,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.resolve(__dirname, 'src/common/Template/index.html'),
+      template: path.resolve(__dirname, 'src/components/Template/index.html'),
     }),
   ],
   devServer: {

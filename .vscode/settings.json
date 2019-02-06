@@ -1,0 +1,12 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "editor.tabSize": 2,
+  "search.exclude": {
+    "**/node_modules": true,
+  },
+  "path-intellisense.mappings": {
+		"pages": "${workspaceRoot}/src/pages",
+		"components": "${workspaceRoot}/src/components"
+	},
+  "javascript.validate.enable": false,
+}

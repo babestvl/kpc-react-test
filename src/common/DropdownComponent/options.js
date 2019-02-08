@@ -1,5 +1,5 @@
 const options = {
-	gender: [{ value: 'Male', label: 'Mr.' }, { value: 'Female', label: 'Ms.' }],
+	gender: ['Mr.', 'Ms.', 'Mrs.'],
 	nationality: [
 		'Afghan',
 		'Albanian',

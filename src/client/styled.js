@@ -19,8 +19,21 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   input {
+    padding: 4px;
     height: 100%;
     border: 0.5px solid #ccc
     font-size: 16px;
   }
+
+  span {
+    font-size: 20px;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+	input[type='number']::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		margin: 0;
+	}
 `

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import InputField from 'common/InputField'
-import DropdownComponent from 'common/Dropdown'
+import DropdownComponent from 'common/DropdownComponent'
 import BirthdatePicker from 'common/BirthdatePicker'
 
 const Wrapper = styled.div`

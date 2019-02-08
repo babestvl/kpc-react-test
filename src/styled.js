@@ -17,4 +17,9 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
+
+  input {
+    height: 100%;
+    border: 0.5px solid #ccc
+  }
 `

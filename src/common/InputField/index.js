@@ -17,6 +17,7 @@ class InputField extends PureComponent {
 	render() {
 		const { data } = this.state
 		const {
+			className,
 			title,
 			inputType = 'text',
 			require = false,
@@ -24,7 +25,7 @@ class InputField extends PureComponent {
 		} = this.props
 
 		return (
-			<FieldComponent title={title} require={require}>
+			<FieldComponent className={className} title={title} require={require}>
 				<StyledInput
 					type={inputType}
 					value={data}

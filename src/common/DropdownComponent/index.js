@@ -15,7 +15,7 @@ const StyledDropdown = styled(Dropdown)`
 	}
 `
 
-const DropdownComponent = ({ title, optionType, require }) => {
+const DropdownComponent = ({ className, title, optionType, require }) => {
 	let storeValue = optionType ? '' : options.gender[0]
 	const dropdownOptions = optionType || 'gender'
 
@@ -24,7 +24,7 @@ const DropdownComponent = ({ title, optionType, require }) => {
 	}
 
 	return (
-		<FieldComponent title={title} require={require}>
+		<FieldComponent className={className} title={title} require={require}>
 			<StyledDropdown
 				options={options[dropdownOptions]}
 				onChange={handleOnChange}

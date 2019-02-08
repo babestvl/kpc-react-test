@@ -3,8 +3,8 @@ import FieldComponent from 'common/FieldComponent'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 
-const BirthdatePicker = () => (
-	<FieldComponent title="Birthday" require>
+const BirthdatePicker = ({ className }) => (
+	<FieldComponent className={className} title="Birthday" require>
 		<DayPickerInput placeholder="mm/dd/yy" format="MM/DD/YY" />
 	</FieldComponent>
 )

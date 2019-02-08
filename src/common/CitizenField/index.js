@@ -17,7 +17,7 @@ class CitizenField extends PureComponent {
 		citizenId: '',
 	}
 
-	inputRefs = createRef();
+	inputRefs = createRef()
 
 	handleOnInput = e => {
 		const { target } = e
@@ -32,11 +32,12 @@ class CitizenField extends PureComponent {
 			target.value = target.value.slice(0, target.maxLength)
 		}
 	}
-	
+
 	render() {
+		const { citizenId } = this.state
 		const { className } = this.props
 		this.inputRefs = []
-
+		console.log(citizenId)
 		return (
 			<FieldComponent className={className} title="CitizenID">
 				<CitizenInput

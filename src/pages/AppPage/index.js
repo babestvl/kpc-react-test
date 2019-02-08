@@ -6,7 +6,7 @@ import {
 	NameInputField,
 	BirthdayField,
 	NationalityDropdown,
-	CitizenInputField
+	CitizenInputField,
 } from './styled'
 
 const AppPage = () => (

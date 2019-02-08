@@ -4,10 +4,11 @@ import DropdownComponent from 'common/DropdownComponent'
 import BirthdatePicker from 'common/BirthdatePicker'
 
 export const Wrapper = styled.div`
-	padding: 8px;
+	padding: 16px 8px;
 	@media (min-width: 700px) {
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
+		grid-column-gap: 8px;
 	}
 `
 

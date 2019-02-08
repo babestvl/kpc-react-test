@@ -13,7 +13,7 @@ const METADATA = Object.assign(
 )
 
 const config = {
-	entry: './src/index.js',
+	entry: './src/client/index.js',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',

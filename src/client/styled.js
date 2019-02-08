@@ -21,5 +21,6 @@ export const GlobalStyle = createGlobalStyle`
   input {
     height: 100%;
     border: 0.5px solid #ccc
+    font-size: 16px;
   }
 `

@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react'
-import { FieldWrapper, Title, StyledInput } from 'common/styled'
+import FieldComponent from 'common/FieldComponent'
+import styled from 'styled-components'
 
-class TextInputField extends PureComponent {
+const StyledInput = styled.input`
+	width: 200px;
+`
+class InputField extends PureComponent {
 	state = {
 		data: '',
 	}
@@ -11,26 +15,25 @@ class TextInputField extends PureComponent {
 	}
 
 	render() {
+		const { data } = this.state
 		const {
-			titleText,
+			title,
 			inputType = 'text',
 			require = false,
 			endingText,
 		} = this.props
-		const { data } = this.state
 
 		return (
-			<FieldWrapper>
-				<Title>{`${titleText}:${require ? '*' : ''}`}</Title>
+			<FieldComponent title={title} require={require}>
 				<StyledInput
 					type={inputType}
 					value={data}
 					onChange={this.handleOnChange}
 				/>
 				<span>{endingText || ''}</span>
-			</FieldWrapper>
+			</FieldComponent>
 		)
 	}
 }
 
-export default TextInputField
+export default InputField

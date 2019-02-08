@@ -1,22 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import TextInputField from 'common/TextInputField'
+import InputField from 'common/InputField'
 import DropdownComponent from 'common/Dropdown'
+import BirthdatePicker from 'common/BirthdatePicker'
 
 const Wrapper = styled.div`
   display: grid
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 1fr);;
   grid-row-gap: 16px;
 
 `
 
 const AppPage = () => (
 	<Wrapper>
-		<DropdownComponent titleText="Title" require />
-		<TextInputField titleText="Firstname" require />
-		<TextInputField titleText="Lastname" require />
-		<DropdownComponent titleText="Nationality" optionType="nationality" />
+		<DropdownComponent title="Title" require />
+		<InputField title="Firstname" require />
+		<InputField title="Lastname" require />
+		<BirthdatePicker />
+		<DropdownComponent title="Nationality" optionType="nationality" />
 	</Wrapper>
 )
 

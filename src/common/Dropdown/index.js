@@ -1,15 +1,21 @@
 import React from 'react'
 import Dropdown from 'react-dropdown'
 import styled from 'styled-components'
-import { FieldWrapper, Title } from 'common/styled'
+import FieldComponent from 'common/FieldComponent'
 import options from './options'
 import 'react-dropdown/style.css'
 
 const StyledDropdown = styled(Dropdown)`
-	margin-left: 8px;
+	.Dropdown-placeholder {
+		color: #888;
+	}
+
+	.is-selected {
+		color: #333;
+	}
 `
 
-const DropdownComponent = ({ titleText, optionType, require }) => {
+const DropdownComponent = ({ title, optionType, require }) => {
 	let storeValue = optionType ? '' : options.gender[0]
 	const dropdownOptions = optionType || 'gender'
 
@@ -18,15 +24,14 @@ const DropdownComponent = ({ titleText, optionType, require }) => {
 	}
 
 	return (
-		<FieldWrapper>
-			<Title>{`${titleText}:${require ? '*' : ''}`}</Title>
+		<FieldComponent title={title} require={require}>
 			<StyledDropdown
 				options={options[dropdownOptions]}
 				onChange={handleOnChange}
 				value={storeValue}
 				placeholder={storeValue ? '' : '-- Please Select --'}
 			/>
-		</FieldWrapper>
+		</FieldComponent>
 	)
 }
 

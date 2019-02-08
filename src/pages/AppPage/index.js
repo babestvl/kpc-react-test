@@ -16,11 +16,7 @@ const AppPage = () => (
 		<DropdownComponent titleText="Title" require />
 		<TextInputField titleText="Firstname" require />
 		<TextInputField titleText="Lastname" require />
-		<DropdownComponent
-			titleText="Nationality"
-			optionType="nationality"
-			placeholder="--Please Select--"
-		/>
+		<DropdownComponent titleText="Nationality" optionType="nationality" />
 	</Wrapper>
 )
 

@@ -9,7 +9,7 @@ const StyledDropdown = styled(Dropdown)`
 	margin-left: 8px;
 `
 
-const DropdownComponent = ({ titleText, optionType, placeholder, require }) => {
+const DropdownComponent = ({ titleText, optionType, require }) => {
 	let storeValue = optionType ? '' : options.gender[0]
 	const dropdownOptions = optionType || 'gender'
 
@@ -24,7 +24,7 @@ const DropdownComponent = ({ titleText, optionType, placeholder, require }) => {
 				options={options[dropdownOptions]}
 				onChange={handleOnChange}
 				value={storeValue}
-				placeholder={placeholder || ''}
+				placeholder={storeValue ? '' : '-- Please Select --'}
 			/>
 		</FieldWrapper>
 	)

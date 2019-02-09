@@ -5,9 +5,17 @@ import BirthdatePicker from 'common/BirthdatePicker'
 import CitizenField from 'common/CitizenField'
 import GenderRadioButton from 'common/GenderRadioButton'
 import PhoneNumberInput from 'common/PhoneNumberInput'
+import Button from 'common/Button'
 
 export const Wrapper = styled.div`
-	padding: 16px 8px;
+	margin: 8px;
+`
+
+export const InputForm = styled.div`
+	width: 100%;
+	padding: 8px;
+	margin-right: 100px;
+	border: 0.5px solid #bbb;
 	@media (min-width: 768px) {
 		display: grid;
 		grid-template-columns: repeat(8, 1fr);
@@ -39,14 +47,18 @@ export const RadioButton = styled(GenderRadioButton)`
 	grid-column: span 8;
 `
 
+export const PhoneNumberInputField = styled(PhoneNumberInput)`
+	grid-column: span 8;
+`
+
 export const PassportInputField = styled(InputField)`
 	grid-column: span 8;
 `
 
 export const SalaryInputField = styled(InputField)`
-	grid-column: span 8;
+	grid-column: span 6;
 `
 
-export const PhoneNumberInputField = styled(PhoneNumberInput)`
-	grid-column: span 8;
+export const SubmitButton = styled(Button)`
+	grid-column: span 1;
 `

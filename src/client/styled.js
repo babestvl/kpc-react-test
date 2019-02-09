@@ -26,7 +26,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   span {
-    font-size: 20px;
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
+    font-size: 16px;
   }
 
   input[type='number']::-webkit-inner-spin-button,

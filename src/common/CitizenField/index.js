@@ -7,7 +7,7 @@ const CitizenInput = styled.input`
 `
 
 const Seperator = styled.span`
-	margin: 0 8px;
+	margin: 0 4px;
 	align-self: center;
 	font-size: 24px;
 `
@@ -44,7 +44,7 @@ class CitizenField extends PureComponent {
 					id="0"
 					type="number"
 					min="0"
-					max="99"
+					max="9"
 					maxLength="1"
 					onInput={this.handleOnInput}
 					ref={input => {
@@ -55,7 +55,7 @@ class CitizenField extends PureComponent {
 				<CitizenInput
 					id="1"
 					min="0"
-					max="99999"
+					max="9999"
 					type="number"
 					maxLength="4"
 					onInput={this.handleOnInput}
@@ -67,7 +67,7 @@ class CitizenField extends PureComponent {
 				<CitizenInput
 					id="2"
 					min="0"
-					max="999999"
+					max="99999"
 					type="number"
 					maxLength="5"
 					onInput={this.handleOnInput}
@@ -79,7 +79,7 @@ class CitizenField extends PureComponent {
 				<CitizenInput
 					id="3"
 					min="0"
-					max="999"
+					max="99"
 					type="number"
 					maxLength="2"
 					onInput={this.handleOnInput}
@@ -91,7 +91,7 @@ class CitizenField extends PureComponent {
 				<CitizenInput
 					id="4"
 					min="0"
-					max="99"
+					max="9"
 					type="number"
 					maxLength="1"
 					onInput={this.handleOnInput}

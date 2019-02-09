@@ -4,6 +4,7 @@ import DropdownComponent from 'common/DropdownComponent'
 import BirthdatePicker from 'common/BirthdatePicker'
 import CitizenField from 'common/CitizenField'
 import GenderRadioButton from 'common/GenderRadioButton'
+import PhoneNumberInput from 'common/PhoneNumberInput'
 
 export const Wrapper = styled.div`
 	padding: 16px 8px;
@@ -31,7 +32,7 @@ export const NationalityDropdown = styled(DropdownComponent)`
 `
 
 export const CitizenInputField = styled(CitizenField)`
-	grid-column: span 8;
+	grid-column: span 7;
 `
 
 export const RadioButton = styled(GenderRadioButton)`
@@ -39,5 +40,13 @@ export const RadioButton = styled(GenderRadioButton)`
 `
 
 export const PassportInputField = styled(InputField)`
+	grid-column: span 8;
+`
+
+export const SalaryInputField = styled(InputField)`
+	grid-column: span 8;
+`
+
+export const PhoneNumberInputField = styled(PhoneNumberInput)`
 	grid-column: span 8;
 `

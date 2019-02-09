@@ -13,13 +13,14 @@ export const Wrapper = styled.div`
 
 export const InputForm = styled.div`
 	width: 100%;
-	padding: 16px;
+	padding: 8px;
 	margin-right: 100px;
 	border: 0.5px solid #bbb;
 	@media (min-width: 768px) {
 		display: grid;
 		grid-template-columns: repeat(8, 1fr);
 		grid-column-gap: 8px;
+		padding: 16px;
 	}
 `
 

@@ -17,6 +17,23 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     border: 0.5px solid #ccc
     font-size: 16px;
+    outline: none;
+  }
+
+  button {
+    outline: none;
+    cursor: pointer;
+    border: 0.5px solid #ccc;
+    background-color: #fff;
+    outline: none;
+
+    &:hover {
+      background-color: #eee;
+    }
+
+    &:active {
+      background-color: #ddd;
+    }
   }
 
   span {

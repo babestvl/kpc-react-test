@@ -8,7 +8,7 @@ import PhoneNumberInput from 'common/PhoneNumberInput'
 import Button from 'common/Button'
 
 export const Wrapper = styled.div`
-	margin: 8px;
+	margin: 16px;
 `
 
 export const InputForm = styled.div`

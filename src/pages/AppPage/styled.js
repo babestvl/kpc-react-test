@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const InputForm = styled.div`
 	width: 100%;
-	padding: 8px;
+	padding: 16px;
 	margin-right: 100px;
 	border: 0.5px solid #bbb;
 	@media (min-width: 768px) {

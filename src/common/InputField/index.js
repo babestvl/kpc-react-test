@@ -10,8 +10,13 @@ class InputField extends PureComponent {
 		data: '',
 	}
 
-	handleOnChange = ({ target: { value } }) => {
+	handleOnInput = ({ target: { value } }) => {
 		this.setState({ data: value })
+	}
+
+	handlePassportInput = ({ target: { value } }) => {
+		const upperValue = value.toUpperCase()
+		this.setState({ data: upperValue })
 	}
 
 	render() {
@@ -20,7 +25,8 @@ class InputField extends PureComponent {
 			className,
 			title,
 			inputType = 'text',
-			require = false,
+			require,
+			passport,
 			endingText,
 		} = this.props
 
@@ -29,7 +35,8 @@ class InputField extends PureComponent {
 				<StyledInput
 					type={inputType}
 					value={data}
-					onChange={this.handleOnChange}
+					maxLength={passport ? 8 : 100}
+					onInput={passport ? this.handlePassportInput : this.handleOnInput}
 				/>
 				<span>{endingText || ''}</span>
 			</FieldComponent>

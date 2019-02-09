@@ -37,3 +37,7 @@ export const CitizenInputField = styled(CitizenField)`
 export const RadioButton = styled(GenderRadioButton)`
 	grid-column: span 8;
 `
+
+export const PassportInputField = styled(InputField)`
+	grid-column: span 8;
+`

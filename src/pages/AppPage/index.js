@@ -8,6 +8,7 @@ import {
 	NationalityDropdown,
 	CitizenInputField,
 	RadioButton,
+	PassportInputField,
 } from './styled'
 
 const AppPage = () => (
@@ -19,6 +20,7 @@ const AppPage = () => (
 		<NationalityDropdown title="Nationality" optionType="nationality" />
 		<CitizenInputField />
 		<RadioButton />
+		<PassportInputField title="Passport No." passport />
 	</Wrapper>
 )
 

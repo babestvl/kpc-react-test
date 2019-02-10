@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
 	Wrapper,
@@ -8,34 +8,43 @@ import {
 	BirthdayField,
 	NationalityDropdown,
 	CitizenInputField,
-	RadioButton,
+	GenderRadio,
 	PassportInputField,
 	SalaryInputField,
 	PhoneNumberInputField,
 	SubmitButton,
 } from './styled'
 
-const AppPage = () => (
-	<Wrapper>
-		<InputForm>
-			<TitleDropdown title="Title" require />
-			<NameInputField title="Firstname" require />
-			<NameInputField title="Lastname" require />
-			<BirthdayField title="Birthday" />
-			<NationalityDropdown title="Nationality" optionType="nationality" />
-			<CitizenInputField />
-			<RadioButton />
-			<PhoneNumberInputField />
-			<PassportInputField title="Passport No." passport />
-			<SalaryInputField
-				title="Expected Salary"
-				inputType="number"
-				endingText="THB"
-			/>
-			<SubmitButton />
-		</InputForm>
-	</Wrapper>
-)
+class AppPage extends PureComponent {
+	generateUid = () =>
+		Math.random()
+			.toString(34)
+			.slice(2)
+
+	render() {
+		return (
+			<Wrapper>
+				<InputForm>
+					<TitleDropdown title="Title" require />
+					<NameInputField title="Firstname" require />
+					<NameInputField title="Lastname" require />
+					<BirthdayField title="Birthday" />
+					<NationalityDropdown title="Nationality" optionType="nationality" />
+					<CitizenInputField />
+					<GenderRadio />
+					<PhoneNumberInputField />
+					<PassportInputField title="Passport No." passport />
+					<SalaryInputField
+						title="Expected Salary"
+						inputType="number"
+						endingText="THB"
+					/>
+					<SubmitButton />
+				</InputForm>
+			</Wrapper>
+		)
+	}
+}
 
 const mapStateToProps = state => ({})
 

@@ -1,15 +1,9 @@
-// export default (state = {}, action) => {
-// 	switch (action.type) {
-// 		case 'SIMPLE_ACTION':
-// 			return {
-// 				result: action.payload,
-// 			}
-// 		default:
-// 			return state
-// 	}
-// }
+import { Map } from 'immutable'
 
-export const AppPageReducer = (state = {}, action) => {
-	// console.log(state, action)
+export default (state = Map(), action) => {
+	// switch(action.type) {
+	// 	case actionType.SET:
+
+	// }
 	return state
 }

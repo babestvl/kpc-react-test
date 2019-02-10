@@ -1,17 +1,5 @@
-// export default (state = {}, action) => {
-// 	switch (action.type) {
-// 		case 'SIMPLE_ACTION':
-// 			return {
-// 				result: action.payload,
-// 			}
-// 		default:
-// 			return state
-// 	}
-// }
+import { Map } from 'immutable'
 
-const CommonReducer = (state = {}, action) => {
-	// console.log(state, action)
+export default (state = Map(), action) => {
 	return state
 }
-
-export default CommonReducer

@@ -38,9 +38,9 @@ export const GlobalStyle = createGlobalStyle`
 
   span {
     @media (min-width: 768px) {
-      font-size: 20px;
+      font-size: 18px;
     }
-    font-size: 16px;
+    font-size: 14px;
   }
 
   input[type='number']::-webkit-inner-spin-button,

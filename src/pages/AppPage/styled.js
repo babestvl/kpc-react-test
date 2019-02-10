@@ -16,6 +16,7 @@ export const InputForm = styled.div`
 	padding: 8px;
 	margin-right: 100px;
 	border: 0.5px solid #bbb;
+	overflow: auto;
 	@media (min-width: 768px) {
 		display: grid;
 		grid-template-columns: repeat(8, 1fr);

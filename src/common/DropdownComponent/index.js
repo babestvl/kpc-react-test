@@ -15,12 +15,14 @@ const StyledDropdown = styled(Dropdown)`
 	}
 `
 
-const DropdownComponent = ({ className, title, optionType, require }) => {
-	let storeValue = optionType ? '' : options.gender[0]
+const DropdownComponent = ({ className, title, optionType, require, data }) => {
+	const fieldName = title.replace(' ', '')
+	data[fieldName] = optionType ? '' : options.gender[0]
+
 	const dropdownOptions = optionType || 'gender'
 
 	const handleOnChange = ({ value }) => {
-		storeValue = value
+		data[fieldName] = value
 	}
 
 	return (
@@ -28,8 +30,8 @@ const DropdownComponent = ({ className, title, optionType, require }) => {
 			<StyledDropdown
 				options={options[dropdownOptions]}
 				onChange={handleOnChange}
-				value={storeValue}
-				placeholder={storeValue ? '' : '-- Please Select --'}
+				value={data[fieldName]}
+				placeholder={data[fieldName] ? '' : '-- Please Select --'}
 			/>
 		</FieldComponent>
 	)

@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+// import actions from 'pages/actions'
+
 import {
 	Wrapper,
 	InputForm,
@@ -15,29 +17,47 @@ import {
 	SubmitButton,
 } from './styled'
 
+const generateUid = () =>
+	Math.random()
+		.toString(34)
+		.slice(2)
+
 class AppPage extends PureComponent {
-	generateUid = () =>
-		Math.random()
-			.toString(34)
-			.slice(2)
+	data = {}
+
+	componentDidMount() {
+		if (!this.data.uid) {
+			this.data.uid = generateUid()
+		}
+	}
 
 	render() {
+		const { data } = this
 		return (
 			<Wrapper>
 				<InputForm>
-					<TitleDropdown title="Title" require />
-					<NameInputField title="Firstname" require />
-					<NameInputField title="Lastname" require />
-					<BirthdayField title="Birthday" />
-					<NationalityDropdown title="Nationality" optionType="nationality" />
-					<CitizenInputField />
-					<GenderRadio />
-					<PhoneNumberInputField />
-					<PassportInputField title="Passport No." passport />
+					<TitleDropdown title="Title" data={data} require />
+					<NameInputField title="Firstname" data={data} require />
+					<NameInputField title="Lastname" data={data} require />
+					<BirthdayField title="Birthday" data={data} />
+					<NationalityDropdown
+						title="Nationality"
+						optionType="nationality"
+						data={data}
+					/>
+					<CitizenInputField data={data} />
+					<GenderRadio data={data} />
+					<PhoneNumberInputField data={data} />
+					<PassportInputField
+						title="Passport No"
+						inputType="passport"
+						data={data}
+					/>
 					<SalaryInputField
 						title="Expected Salary"
-						inputType="number"
+						inputType="salary"
 						endingText="THB"
+						data={data}
 					/>
 					<SubmitButton />
 				</InputForm>

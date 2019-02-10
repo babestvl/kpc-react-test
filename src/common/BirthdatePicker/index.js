@@ -53,9 +53,14 @@ class BirthdatePicker extends PureComponent {
 		this.setState({ month })
 	}
 
+	handleOnDayChange = day => {
+		const { data } = this.props
+		data.Birthday = day
+	}
+
 	render() {
 		const { month } = this.state
-		const { className } = this.props
+		const { className, data } = this.props
 		const dayPickerProps = {
 			month: month,
 			fromMonth: fromMonth,
@@ -68,6 +73,7 @@ class BirthdatePicker extends PureComponent {
 				/>
 			),
 		}
+
 		return (
 			<FieldComponent className={className} title="Birthday" require>
 				<DayPickerInput
@@ -77,6 +83,8 @@ class BirthdatePicker extends PureComponent {
 					parseDate={parseDate}
 					inputProps={{ readOnly: true }}
 					dayPickerProps={dayPickerProps}
+					onDayChange={this.handleOnDayChange}
+					value={data.Birthday}
 				/>
 			</FieldComponent>
 		)

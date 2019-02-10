@@ -1,9 +1,12 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import FieldComponent from 'common/FieldComponent'
 import styled from 'styled-components'
-// import numeral from 'numeral'
+import Cleave from 'cleave.js/react'
 
-const StyledInput = styled.input`
+const InputBox = styled(Cleave)`
+	@media (max-width: 768px) {
+		width: 160px;
+	}
 	width: 200px;
 `
 
@@ -12,60 +15,44 @@ const EndingText = styled.span`
 	align-self: center;
 `
 
-class InputField extends PureComponent {
-	state = {
-		data: '',
+const options = {
+	salary: {
+		numeral: true,
+		numeralThousandsGroupStyle: 'thousand',
+	},
+	passport: {
+		blocks: [8],
+		uppercase: true,
+	},
+	text: {},
+}
+
+const InputField = ({
+	className,
+	data,
+	title,
+	inputType = 'text',
+	require,
+	endingText,
+}) => {
+	const fieldName = title.replace(' ', '')
+	const handleOnChange = ({ target: { value } }) => {
+		data[fieldName] = value
+		console.log(data)
 	}
 
-	handleOnChange = inputType => ({ target: { value } }) => {
-		if (inputType === 'number') {
-			if (+value || '') {
-				this.setState({ data: value })
-			}
-		} else {
-			this.setState({ data: value })
-		}
-	}
+	const value = data[fieldName]
 
-	handlePassportInput = ({ target: { value } }) => {
-		const upperValue = value.toUpperCase()
-		this.setState({ data: upperValue })
-	}
-
-	// handleOnBlur = inputType => e => {
-	// 	const { data } = this.state
-	// 	if (inputType === 'number') {
-	// 		const number = numeral(data).format()
-	// 		this.setState({ data: number })
-	// 	}
-	// }
-
-	render() {
-		const { data } = this.state
-		const {
-			className,
-			title,
-			inputType = 'text',
-			require,
-			passport,
-			endingText,
-		} = this.props
-
-		return (
-			<FieldComponent className={className} title={title} require={require}>
-				<StyledInput
-					type="text"
-					value={data}
-					maxLength={passport ? 8 : 100}
-					onChange={
-						passport ? this.handlePassportInput : this.handleOnChange(inputType)
-					}
-					// onBlur={this.handleOnBlur(inputType)}
-				/>
-				<EndingText>{endingText || ''}</EndingText>
-			</FieldComponent>
-		)
-	}
+	return (
+		<FieldComponent className={className} title={title} require={require}>
+			<InputBox
+				value={value}
+				onChange={handleOnChange}
+				options={options[inputType]}
+			/>
+			<EndingText>{endingText || ''}</EndingText>
+		</FieldComponent>
+	)
 }
 
 export default InputField

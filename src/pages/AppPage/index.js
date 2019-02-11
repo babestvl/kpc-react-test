@@ -31,14 +31,9 @@ class AppPage extends PureComponent {
 		}
 	}
 
-	componentWillUnmount() {
-		console.log('unmount')
-	}
-
 	handleSubmitButton = () => {
 		const { submitForm } = this.props
 		submitForm(this.data)
-		console.log(submitForm, 'called')
 	}
 
 	renderInputForm() {
@@ -80,12 +75,11 @@ class AppPage extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-	data: selectors.getData(state),
+	forms: selectors.getForms(state),
 })
 
 const mapDispatchToProps = dispatch => ({
-	submitForm: data =>
-		console.log(dispatch, data) || dispatch(actions.submitForm(data)),
+	submitForm: data => dispatch(actions.submitForm(data)),
 })
 
 export default connect(

@@ -1,5 +1,5 @@
 const selectors = {
-	getData: state => state.get('forms'),
+	getForms: state => state.get('forms'),
 }
 
 export default selectors

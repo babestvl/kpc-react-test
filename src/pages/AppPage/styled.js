@@ -9,12 +9,13 @@ import Button from 'common/Button'
 
 export const Wrapper = styled.div`
 	margin: 16px;
+	display: grid;
+	grid-template-rows: 1fr 36px 1fr;
+	grid-row-gap: 16px;
 `
 
 export const InputForm = styled.div`
-	width: 100%;
 	padding: 8px;
-	margin-right: 100px;
 	border: 0.5px solid #bbb;
 	overflow: auto;
 	@media (min-width: 768px) {
@@ -23,6 +24,10 @@ export const InputForm = styled.div`
 		grid-column-gap: 8px;
 		padding: 16px;
 	}
+`
+
+export const dataCollection = styled.div`
+	padding: 8px;
 `
 
 export const TitleDropdown = styled(DropdownComponent)`

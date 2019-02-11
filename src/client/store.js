@@ -1,6 +1,11 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import rootReducer from 'client/reducers'
+import { combineReducers } from 'redux-immutable'
+import { FormsReducer } from 'common/reducers'
+
+const rootReducer = combineReducers({
+	forms: FormsReducer,
+})
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 

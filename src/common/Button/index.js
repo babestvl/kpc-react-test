@@ -7,9 +7,9 @@ const StyledButton = styled.button`
 	font-size: 20px;
 `
 
-const Button = ({ className }) => (
+const Button = ({ className, onClick }) => (
 	<div className={className}>
-		<StyledButton>SUBMIT</StyledButton>
+		<StyledButton onClick={onClick}>SUBMIT</StyledButton>
 	</div>
 )
 

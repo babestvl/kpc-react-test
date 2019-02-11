@@ -3,6 +3,7 @@ class Storage {
 
 	init(store) {
 		this.store = store
+		console.log(store)
 	}
 
 	get(key, defaultValue = null) {

@@ -9,7 +9,9 @@ import PhoneNumberInput from 'common/PhoneNumberInput'
 import Button from 'common/Button'
 
 export const Wrapper = styled.div`
-	margin: 16px;
+	@media (min-width: 768px) {
+		margin: 16px;
+	}
 	display: grid;
 	grid-template-rows: 1fr 36px 1fr;
 	grid-row-gap: 16px;
@@ -17,10 +19,10 @@ export const Wrapper = styled.div`
 
 export const InputForm = styled.div`
 	padding: 8px;
-	border: 0.5px solid #bbb;
 	overflow: auto;
 	@media (min-width: 768px) {
 		display: grid;
+		border: 0.5px solid #bbb;
 		grid-template-columns: repeat(8, 1fr);
 		grid-column-gap: 8px;
 		padding: 16px;
@@ -101,4 +103,18 @@ export const PaginateWrapper = styled.div`
 	a {
 		outline: none;
 	}
+`
+
+export const ControlWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`
+
+export const SelectAllText = styled.span`
+	margin-right: 16px;
+	margin-left: 8px;
+`
+
+export const CheckBox = styled.input`
+	height: 16px;
 `

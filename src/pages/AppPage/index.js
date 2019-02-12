@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { List } from 'immutable'
 import actions from 'common/actions'
 import selectors from 'common/selectors'
 import { ToastContainer, toast } from 'react-toastify'
 import ReactPaginate from 'react-paginate'
-import ListComponent from 'common/ListComponent'
 import Button from 'common/Button'
+import ListComponent from './Components/ListComponent'
 import {
 	Wrapper,
 	InputForm,
@@ -21,6 +22,9 @@ import {
 	SubmitButton,
 	PaginateWrapper,
 	DataControl,
+	ControlWrapper,
+	SelectAllText,
+	CheckBox,
 } from './styled'
 
 const generateUid = () =>
@@ -53,6 +57,9 @@ const initData = {
 class AppPage extends PureComponent {
 	state = {
 		data: initData,
+		showData: List(),
+		checkedAll: false,
+		checkBoxs: [false, false, false, false, false],
 	}
 
 	componentDidMount() {
@@ -60,6 +67,15 @@ class AppPage extends PureComponent {
 		if (!data.Uid) {
 			this.resetData()
 		}
+		this.initShowData()
+	}
+
+	initShowData = () => {
+		const { forms } = this.props
+		const showData = forms.filter((item, index) => index >= 0 && index < 5)
+		this.setState({
+			showData: showData,
+		})
 	}
 
 	resetData = () => {
@@ -106,6 +122,44 @@ class AppPage extends PureComponent {
 				position: toast.POSITION.BOTTOM_CENTER,
 			})
 		}
+	}
+
+	handlePageClick = data => {
+		const { forms } = this.props
+		const selected = data.selected
+		const start = Math.ceil(selected * 5)
+		const end = start + 5
+		const showData = forms.filter(
+			(item, index) => index >= start && index < end,
+		)
+		this.setState({
+			showData: showData,
+		})
+	}
+
+	handleCheckAllBox = () => {
+		const { checkedAll } = this.state
+		this.setState({
+			checkedAll: !checkedAll,
+			checkBoxs: [true, true, true, true, true],
+		})
+	}
+
+	handleCheckBox = index => () => {
+		const { checkBoxs } = this.state
+		const newBoxsState = checkBoxs
+		newBoxsState[index] = !checkBoxs[index]
+		const newAllState = newBoxsState.every(item => item === true)
+		this.setState({
+			checkedAll: newAllState,
+			checkBoxs: newBoxsState,
+		})
+	}
+
+	handleEditData = data => {
+		this.setState({
+			data: data,
+		})
 	}
 
 	renderInputForm = () => {
@@ -166,13 +220,20 @@ class AppPage extends PureComponent {
 
 	renderDataControl = () => {
 		const { forms } = this.props
+		const { checkedAll } = this.state
 		const pageCount = Math.ceil(forms.length / 5)
 
 		return (
 			<DataControl>
-				<div>
+				<ControlWrapper>
+					<CheckBox
+						type="checkbox"
+						checked={checkedAll}
+						onChange={this.handleCheckAllBox}
+					/>
+					<SelectAllText>Select All</SelectAllText>
 					<Button text="DELETE" />
-				</div>
+				</ControlWrapper>
 				<PaginateWrapper>
 					<ReactPaginate
 						previousLabel="previous"
@@ -193,7 +254,15 @@ class AppPage extends PureComponent {
 	}
 
 	renderDataSet = () => {
-		return <ListComponent />
+		const { showData, checkBoxs } = this.state
+		return (
+			<ListComponent
+				showData={showData}
+				checkBoxs={checkBoxs}
+				handleCheckBox={this.handleCheckBox}
+				handleEditData={this.handleEditData}
+			/>
+		)
 	}
 
 	render() {

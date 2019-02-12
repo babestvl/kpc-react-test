@@ -52,9 +52,9 @@ class BirthdatePicker extends PureComponent {
 		this.setState({ month })
 	}
 
-	handleOnDayChange = day => {
+	handleOnDayChange = (day, modifiers, dayPickerInput) => {
 		const { setDataField } = this.props
-		setDataField('Birthday', day)
+		setDataField('Birthday', dayPickerInput.state.value)
 	}
 
 	render() {
@@ -76,8 +76,8 @@ class BirthdatePicker extends PureComponent {
 		return (
 			<FieldComponent className={className} title="Birthday" require>
 				<DayPickerInput
-					placeholder="mm/dd/yyyy"
-					format="MM/DD/YYYY"
+					placeholder="mm/dd/yy"
+					format="MM/DD/YY"
 					formatDate={formatDate}
 					parseDate={parseDate}
 					inputProps={{ readOnly: true }}

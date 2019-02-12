@@ -73,6 +73,7 @@ class AppPage extends PureComponent {
 				PassportNo: '',
 				ExpectedSalary: '',
 			},
+			currentPage: 0,
 			checkedAll: false,
 			checkedUids: ['', '', '', '', ''],
 		})

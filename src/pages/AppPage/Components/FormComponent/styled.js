@@ -8,7 +8,7 @@ import PhoneNumberInput from 'common/PhoneNumberInput'
 import Button from 'common/Button'
 
 export const InputForm = styled.div`
-	padding: 8px;
+	padding: 4px;
 	overflow: auto;
 	@media (min-width: 768px) {
 		display: grid;

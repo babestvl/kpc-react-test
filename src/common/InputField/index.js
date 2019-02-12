@@ -21,14 +21,16 @@ class InputField extends PureComponent {
 
 	handleOnChange = inputType => ({ target: { value } }) => {
 		const { data: propsData, title } = this.props
-		propsData[title] = value
+		const fieldName = title.replace(' ', '')
+		propsData[fieldName] = value
 		this.setState({ data: value })
 	}
 
 	handlePassportInput = ({ target: { value } }) => {
 		const upperValue = value.toUpperCase()
 		const { data: propsData, title } = this.props
-		propsData[title] = value
+		const fieldName = title.replace(' ', '')
+		propsData[fieldName] = value
 		this.setState({ data: upperValue })
 	}
 

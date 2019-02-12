@@ -50,11 +50,10 @@ class AppPage extends PureComponent {
 
 	handleSubmitButton = async () => {
 		const { submitForm } = this.props
-		console.log(this.data)
-		const validate = requireDataKeys
-			.map(key => this.data[key] === undefined && this.data[key] === '')
-			.some(item => item === true)
-		if (validate) {
+		const validated = requireDataKeys
+			.map(key => this.data[key] !== undefined && this.data[key] !== '')
+			.every(item => item === true)
+		if (validated) {
 			await submitForm(this.data)
 			toast('Success', {
 				position: toast.POSITION.BOTTOM_CENTER,

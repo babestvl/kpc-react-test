@@ -7,19 +7,17 @@ class Storage {
 
 	init(store) {
 		this.store = store
-		// this.initData()
+		this.initData()
 	}
 
 	initData() {
 		const data = JSON.parse(localStorage.getItem(key))
-		console.log('initData', data)
 		if (data) {
-			this.store.dispatch(actions.submitForm(data))
+			this.store.dispatch(actions.initStore(data))
 		}
 	}
 
 	storeData(data) {
-		console.log('storeData')
 		localStorage.setItem(key, JSON.stringify(data))
 	}
 }

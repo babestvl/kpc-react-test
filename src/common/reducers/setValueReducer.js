@@ -10,8 +10,9 @@ export default (state, action) => {
 	let newState
 	if (index !== -1) {
 		newState = state.set(index, Map(payload))
+	} else {
+		newState = state.push(Map(payload))
 	}
-	newState = state.push(Map(payload))
 	Storage.storeData(newState)
 	return newState
 }

@@ -1,18 +1,26 @@
+import actions from 'common/actions'
+
+const key = 'kpc.data'
+
 class Storage {
 	store = {}
 
 	init(store) {
 		this.store = store
-		console.log(store)
+		// this.initData()
 	}
 
-	get(key, defaultValue = null) {
-		return JSON.parse(localStorage.getItem(key, defaultValue))
+	initData() {
+		const data = JSON.parse(localStorage.getItem(key))
+		console.log('initData', data)
+		if (data) {
+			this.store.dispatch(actions.submitForm(data))
+		}
 	}
 
-	set(key, action, data) {
+	storeData(data) {
+		console.log('storeData')
 		localStorage.setItem(key, JSON.stringify(data))
-		this.store.dispatch(action(data))
 	}
 }
 

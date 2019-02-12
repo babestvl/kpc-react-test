@@ -13,7 +13,7 @@ const METADATA = Object.assign(
 )
 
 const config = {
-	entry: './src/client/index.js',
+	entry: ['babel-polyfill', './src/client/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',

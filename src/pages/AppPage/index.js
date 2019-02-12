@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import actions from 'common/actions'
 import selectors from 'common/selectors'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
 	Wrapper,
 	InputForm,
@@ -22,18 +24,48 @@ const generateUid = () =>
 		.toString(34)
 		.slice(2)
 
+const requireDataKeys = [
+	'Title',
+	'Firstname',
+	'Lastname',
+	'Birthday',
+	'MobilePhone',
+	'ExpectedSalary',
+]
+
 class AppPage extends PureComponent {
 	data = {}
 
 	componentDidMount() {
-		if (!this.data.uid) {
+		if (!this.data.Uid) {
 			this.data.Uid = generateUid()
 		}
 	}
 
-	handleSubmitButton = () => {
+	resetData = () => {
+		this.data = {
+			Uid: generateUid(),
+		}
+	}
+
+	handleSubmitButton = async () => {
 		const { submitForm } = this.props
-		submitForm(this.data)
+		console.log(this.data)
+		const validate = requireDataKeys
+			.map(key => this.data[key] === undefined && this.data[key] === '')
+			.some(item => item === true)
+		if (validate) {
+			await submitForm(this.data)
+			toast('Success', {
+				position: toast.POSITION.BOTTOM_CENTER,
+			})
+			this.resetData()
+			this.forceUpdate()
+		} else {
+			toast('Input all required fills', {
+				position: toast.POSITION.BOTTOM_CENTER,
+			})
+		}
 	}
 
 	renderInputForm() {
@@ -63,6 +95,7 @@ class AppPage extends PureComponent {
 					inputType="salary"
 					endingText="THB"
 					data={data}
+					require
 				/>
 				<SubmitButton onClick={this.handleSubmitButton} />
 			</InputForm>
@@ -70,7 +103,12 @@ class AppPage extends PureComponent {
 	}
 
 	render() {
-		return <Wrapper>{this.renderInputForm()}</Wrapper>
+		return (
+			<Wrapper>
+				{this.renderInputForm()}
+				<ToastContainer />
+			</Wrapper>
+		)
 	}
 }
 

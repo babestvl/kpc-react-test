@@ -1,4 +1,5 @@
 import { Map } from 'immutable'
+import Storage from 'client/Storage'
 
 export default (state, action) => {
 	if (action.error) {
@@ -6,8 +7,11 @@ export default (state, action) => {
 	}
 	const payload = action.payload
 	const index = state.findIndex(item => payload.Uid === item.get('Uid'))
+	let newState
 	if (index !== -1) {
-		return state.set(index, Map(payload))
+		newState = state.set(index, Map(payload))
 	}
-	return state.push(Map(payload))
+	newState = state.push(Map(payload))
+	Storage.storeData(newState)
+	return newState
 }

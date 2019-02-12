@@ -1,10 +1,7 @@
 import React, { PureComponent } from 'react'
-import styled from 'styled-components'
 import FieldComponent from 'common/FieldComponent'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import { formatDate, parseDate } from 'react-day-picker/moment'
-
-const Form = styled.form``
 
 const currentYear = new Date().getFullYear() - 50
 const fromMonth = new Date(currentYear, 0)
@@ -24,7 +21,7 @@ const YearMonthForm = ({ date, localeUtils, onChange }) => {
 	}
 
 	return (
-		<Form className="DayPicker-Caption">
+		<form className="DayPicker-Caption">
 			<select name="month" onChange={handleChange} value={date.getMonth()}>
 				{months.map((month, i) => (
 					<option key={month} value={i}>
@@ -39,7 +36,7 @@ const YearMonthForm = ({ date, localeUtils, onChange }) => {
 					</option>
 				))}
 			</select>
-		</Form>
+		</form>
 	)
 }
 

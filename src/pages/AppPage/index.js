@@ -160,7 +160,6 @@ class AppPage extends PureComponent {
 		this.setState({
 			data: data,
 		})
-		this.handlePage()
 	}
 
 	handleDeleteData = async uid => {

@@ -1,22 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import actions from 'common/actions'
 import selectors from 'common/selectors'
 import ListItem from './ListItem'
 import { Wrapper, Header, HeaderContent } from './styled'
 
 const ListComponent = ({
-	checkBoxs,
+	checkedUids,
 	handleCheckBox,
 	handleEditData,
-	forms,
-	currentPage,
+	handleDeleteData,
 	deleteData,
+	showData,
 }) => {
-	const start = Math.ceil(currentPage * 5)
-	const end = start + 5
-	const showData = forms.filter((item, index) => index >= start && index < end)
-
+	console.log('RENDER')
+	console.log(showData)
 	return (
 		<Wrapper>
 			<Header>
@@ -32,10 +29,10 @@ const ListComponent = ({
 					index={index}
 					key={item.Uid}
 					data={item}
-					checked={checkBoxs[index]}
+					checked={checkedUids[index]}
 					handleCheckBox={handleCheckBox}
 					handleEditData={handleEditData}
-					handleDeleteData={deleteData}
+					handleDeleteData={handleDeleteData}
 				/>
 			))}
 		</Wrapper>
@@ -43,14 +40,7 @@ const ListComponent = ({
 }
 
 const mapStateToProps = state => ({
-	forms: selectors.getForms(state),
+	showData: selectors.getShowData(state),
 })
 
-const mapDispatchToProps = dispatch => ({
-	deleteData: data => dispatch(actions.deleteForm(data)),
-})
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(ListComponent)
+export default connect(mapStateToProps)(ListComponent)

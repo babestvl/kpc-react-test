@@ -14,14 +14,14 @@ const ListItem = ({
 	const gender = data.Gender
 	const mobilePhone = data.MobilePhone
 	const nationality = data.Nationality
-	console.log(checked)
+	const uid = data.Uid
 
 	return (
 		<Wrapper>
 			<CheckBox
 				type="checkbox"
 				checked={checked}
-				onChange={handleCheckBox(index)}
+				onChange={handleCheckBox(index, uid)}
 			/>
 			<Item>{`${firstname} ${lastname}`}</Item>
 			<Item>{gender}</Item>

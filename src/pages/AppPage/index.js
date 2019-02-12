@@ -39,14 +39,23 @@ class AppPage extends PureComponent {
 	state = {
 		data: initData,
 		checkedAll: false,
-		checkBoxs: [false, false, false, false, false],
 		currentPage: 0,
+		checkedUids: ['', '', '', '', ''],
 	}
 
 	componentDidMount() {
 		const { data } = this.state
 		if (!data.Uid) {
 			this.resetData()
+		}
+		this.handlePage()
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		const { currentPage } = this.state
+		const { currentPage: prevCurrentPage } = prevState
+		if (currentPage !== prevCurrentPage) {
+			this.handlePage()
 		}
 	}
 
@@ -87,6 +96,7 @@ class AppPage extends PureComponent {
 			toast('Success', {
 				position: toast.POSITION.BOTTOM_CENTER,
 			})
+			this.handlePage()
 			this.resetData()
 		} else {
 			toast('Please input all required fields', {
@@ -95,35 +105,52 @@ class AppPage extends PureComponent {
 		}
 	}
 
+	handlePage = () => {
+		const { currentPage } = this.state
+		const { forms, setShowData } = this.props
+		const start = Math.ceil(currentPage * 5)
+		const end = start + 5
+		const newShowData = forms.filter(
+			(item, index) => index >= start && index < end,
+		)
+		setShowData(newShowData)
+	}
+
 	handlePageClick = data => {
 		this.setState({
 			currentPage: data.selected,
+			checkedAll: false,
+			checkedUids: ['', '', '', '', ''],
 		})
 	}
 
-	handleCheckAllBox = () => {
+	handleCheckAllBox = uids => {
 		const { checkedAll } = this.state
 		if (checkedAll === true) {
 			this.setState({
 				checkedAll: false,
-				checkBoxs: [false, false, false, false, false],
+				checkedUids: ['', '', '', '', ''],
 			})
 		} else {
 			this.setState({
 				checkedAll: true,
-				checkBoxs: [true, true, true, true, true],
+				checkedUids: uids,
 			})
 		}
 	}
 
-	handleCheckBox = index => () => {
-		const { checkBoxs } = this.state
-		const newBoxsState = checkBoxs
-		newBoxsState[index] = !checkBoxs[index]
-		const newAllState = newBoxsState.every(item => item === true)
+	handleCheckBox = (index, uid) => () => {
+		const { checkedUids } = this.state
+		const newBoxsState = checkedUids
+		if (checkedUids[index] === '') {
+			newBoxsState[index] = uid
+		} else {
+			newBoxsState[index] = ''
+		}
+		const newAllState = newBoxsState.every(item => item !== '')
 		this.setState({
 			checkedAll: newAllState,
-			checkBoxs: newBoxsState,
+			checkedUids: newBoxsState,
 		})
 	}
 
@@ -131,11 +158,28 @@ class AppPage extends PureComponent {
 		this.setState({
 			data: data,
 		})
+		this.handlePage()
+	}
+
+	handleDeleteData = async uid => {
+		const { deleteData } = this.props
+		await deleteData(uid)
+		this.handlePage()
+	}
+
+	handleDeleteFormsData = async () => {
+		const { deleteForms } = this.props
+		const { checkedUids } = this.state
+		await deleteForms(checkedUids)
+		this.setState({
+			checkedAll: false,
+			checkedUids: ['', '', '', '', ''],
+		})
+		this.handlePage()
 	}
 
 	renderInputForm = () => {
 		const { data } = this.state
-
 		return (
 			<FormComponent
 				data={data}
@@ -152,18 +196,19 @@ class AppPage extends PureComponent {
 				checkedAll={checkedAll}
 				handlePageClick={this.handlePageClick}
 				handleCheckAllBox={this.handleCheckAllBox}
+				handleDeleteFormsData={this.handleDeleteFormsData}
 			/>
 		)
 	}
 
 	renderDataSet = () => {
-		const { checkBoxs, currentPage } = this.state
+		const { checkedUids } = this.state
 		return (
 			<ListComponent
-				checkBoxs={checkBoxs}
-				currentPage={currentPage}
+				checkedUids={checkedUids}
 				handleCheckBox={this.handleCheckBox}
 				handleEditData={this.handleEditData}
+				handleDeleteData={this.handleDeleteData}
 			/>
 		)
 	}
@@ -182,10 +227,14 @@ class AppPage extends PureComponent {
 
 const mapStateToProps = state => ({
 	forms: selectors.getForms(state),
+	showData: selectors.getShowData(state),
 })
 
 const mapDispatchToProps = dispatch => ({
 	submitForm: data => dispatch(actions.submitForm(data)),
+	deleteData: data => dispatch(actions.deleteForm(data)),
+	deleteForms: uids => dispatch(actions.deleteForms(uids)),
+	setShowData: data => dispatch(actions.setShowData(data)),
 })
 
 export default connect(

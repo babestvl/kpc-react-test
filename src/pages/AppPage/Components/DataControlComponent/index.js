@@ -13,21 +13,23 @@ import {
 const DataControlComponent = ({
 	forms,
 	checkedAll,
+	showData,
 	handleCheckAllBox,
 	handlePageClick,
+	handleDeleteFormsData,
 }) => {
 	const pageCount = Math.ceil(forms.length / 5)
-
+	const uids = showData.map(item => item.Uid)
 	return (
 		<DataControl>
 			<ControlWrapper>
 				<CheckBox
 					type="checkbox"
 					checked={checkedAll}
-					onChange={handleCheckAllBox}
+					onChange={() => handleCheckAllBox(uids)}
 				/>
 				<SelectAllText>Select All</SelectAllText>
-				<Button text="DELETE" />
+				<Button text="DELETE" onClick={handleDeleteFormsData} />
 			</ControlWrapper>
 			<PaginateWrapper>
 				<ReactPaginate
@@ -50,6 +52,7 @@ const DataControlComponent = ({
 
 const mapStateToProps = state => ({
 	forms: selectors.getForms(state),
+	showData: selectors.getShowData(state),
 })
 
 export default connect(mapStateToProps)(DataControlComponent)

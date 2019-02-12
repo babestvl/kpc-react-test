@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 const Wrapper = styled.div`
 	display: grid;
-	grid-template-columns: 32px repeat(5, 1fr);
+	grid-template-columns: 32px repeat(4, 1fr) 15%;
 	align-items: center;
 `
 
@@ -17,7 +17,10 @@ const CheckBox = styled.input`
 
 const Button = styled.button`
 	border: none;
-	font-size: 16px;
+	font-size: 12px;
+	@media (min-width: 768px) {
+		font-size: 16px;
+	}
 `
 
 const ListItem = ({

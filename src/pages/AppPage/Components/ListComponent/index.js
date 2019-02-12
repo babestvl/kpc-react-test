@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 const Header = styled.div`
 	display: grid;
-	grid-template-columns: 32px repeat(5, 1fr);
+	grid-template-columns: 32px repeat(4, 1fr) 15%;
 	border: 0.5px solid #ccc;
 	background-color: lightblue;
 	align-items: center;

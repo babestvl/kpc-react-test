@@ -254,7 +254,7 @@ class AppPage extends PureComponent {
 				{this.renderInputForm()}
 				{this.renderDataControl()}
 				{this.renderDataSet()}
-				<ToastContainer />
+				<ToastContainer autoClose={2000} />
 			</Wrapper>
 		)
 	}

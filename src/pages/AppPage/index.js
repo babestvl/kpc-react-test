@@ -3,19 +3,11 @@ import { connect } from 'react-redux'
 import actions from 'common/actions'
 import selectors from 'common/selectors'
 import { ToastContainer, toast } from 'react-toastify'
-import ReactPaginate from 'react-paginate'
-import Button from 'common/Button'
 import ListComponent from './Components/ListComponent'
 import FormComponent from './Components/FormComponent'
+import DataControlComponent from './Components/DataControlComponent'
 
-import {
-	Wrapper,
-	DataControl,
-	PaginateWrapper,
-	ControlWrapper,
-	SelectAllText,
-	CheckBox,
-} from './styled'
+import { Wrapper } from './styled'
 
 const generateUid = () =>
 	Math.random()
@@ -112,10 +104,17 @@ class AppPage extends PureComponent {
 
 	handleCheckAllBox = () => {
 		const { checkedAll } = this.state
-		this.setState({
-			checkedAll: !checkedAll,
-			checkBoxs: [true, true, true, true, true],
-		})
+		if (checkedAll === true) {
+			this.setState({
+				checkedAll: false,
+				checkBoxs: [false, false, false, false, false],
+			})
+		} else {
+			this.setState({
+				checkedAll: true,
+				checkBoxs: [true, true, true, true, true],
+			})
+		}
 	}
 
 	handleCheckBox = index => () => {
@@ -148,37 +147,14 @@ class AppPage extends PureComponent {
 	}
 
 	renderDataControl = () => {
-		const { forms } = this.props
 		const { checkedAll } = this.state
-		const pageCount = Math.ceil(forms.length / 5)
-
 		return (
-			<DataControl>
-				<ControlWrapper>
-					<CheckBox
-						type="checkbox"
-						checked={checkedAll}
-						onChange={this.handleCheckAllBox}
-					/>
-					<SelectAllText>Select All</SelectAllText>
-					<Button text="DELETE" />
-				</ControlWrapper>
-				<PaginateWrapper>
-					<ReactPaginate
-						previousLabel="previous"
-						nextLabel="next"
-						breakLabel="..."
-						breakClassName="break-me"
-						pageCount={pageCount}
-						marginPagesDisplayed={2}
-						pageRangeDisplayed={5}
-						onPageChange={this.handlePageClick}
-						containerClassName="pagination"
-						subContainerClassName="pages pagination"
-						activeClassName="active"
-					/>
-				</PaginateWrapper>
-			</DataControl>
+			<DataControlComponent
+				checkedAll={checkedAll}
+				handleCheckBox={this.handleCheckBox}
+				handlePageClick={this.handlePageClick}
+				handleCheckAllBox={this.handleCheckAllBox}
+			/>
 		)
 	}
 

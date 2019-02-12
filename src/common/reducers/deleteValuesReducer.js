@@ -6,7 +6,6 @@ export default (state, action) => {
 	}
 	const payload = action.payload
 	let newState = state
-	console.log(payload)
 	payload.forEach(uid => {
 		newState = newState.filter(item => item.get('Uid') !== uid)
 	})

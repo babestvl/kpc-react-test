@@ -21,7 +21,7 @@ const ListItem = ({
 			<CheckBox
 				type="checkbox"
 				checked={checked}
-				onChange={handleCheckBox(index, uid)}
+				onChange={() => handleCheckBox(index, uid)}
 			/>
 			<Item>{`${firstname} ${lastname}`}</Item>
 			<Item>{gender}</Item>

@@ -38,8 +38,8 @@ const initData = {
 class AppPage extends PureComponent {
 	state = {
 		data: initData,
-		checkedAll: false,
 		currentPage: 0,
+		checkedAll: false,
 		checkedUids: ['', '', '', '', ''],
 	}
 
@@ -73,6 +73,8 @@ class AppPage extends PureComponent {
 				PassportNo: '',
 				ExpectedSalary: '',
 			},
+			checkedAll: false,
+			checkedUids: ['', '', '', '', ''],
 		})
 	}
 
@@ -96,8 +98,8 @@ class AppPage extends PureComponent {
 			toast('Success', {
 				position: toast.POSITION.BOTTOM_CENTER,
 			})
-			this.handlePage()
 			this.resetData()
+			this.handlePage()
 		} else {
 			toast('Please input all required fields', {
 				position: toast.POSITION.BOTTOM_CENTER,
@@ -139,7 +141,7 @@ class AppPage extends PureComponent {
 		}
 	}
 
-	handleCheckBox = (index, uid) => () => {
+	handleCheckBox = (index, uid) => {
 		const { checkedUids } = this.state
 		const newBoxsState = checkedUids
 		if (checkedUids[index] === '') {
@@ -164,6 +166,7 @@ class AppPage extends PureComponent {
 	handleDeleteData = async uid => {
 		const { deleteData } = this.props
 		await deleteData(uid)
+		this.resetData()
 		this.handlePage()
 	}
 
@@ -171,10 +174,7 @@ class AppPage extends PureComponent {
 		const { deleteForms } = this.props
 		const { checkedUids } = this.state
 		await deleteForms(checkedUids)
-		this.setState({
-			checkedAll: false,
-			checkedUids: ['', '', '', '', ''],
-		})
+		this.resetData()
 		this.handlePage()
 	}
 

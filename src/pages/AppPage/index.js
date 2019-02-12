@@ -102,7 +102,7 @@ class AppPage extends PureComponent {
 			})
 			this.resetData()
 		} else {
-			toast('Input all required fills', {
+			toast('Please input all required fields', {
 				position: toast.POSITION.BOTTOM_CENTER,
 			})
 		}

@@ -8,5 +8,10 @@ export const FieldWrapper = styled.div`
 
 export const Title = styled.span`
 	align-self: center;
+`
+
+export const RequireIcon = styled.span`
+	align-self: center;
+	color: red;
 	margin-right: 8px;
 `

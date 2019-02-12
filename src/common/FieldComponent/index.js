@@ -1,9 +1,10 @@
 import React from 'react'
-import { FieldWrapper, Title } from './styled'
+import { FieldWrapper, Title, RequireIcon } from './styled'
 
 const FieldComponent = ({ className, children, title, require }) => (
 	<FieldWrapper className={className}>
-		<Title>{`${title}:${require ? '*' : ''}`}</Title>
+		<Title>{`${title}:`}</Title>
+		<RequireIcon>{require ? '*' : ''}</RequireIcon>
 		{children}
 	</FieldWrapper>
 )

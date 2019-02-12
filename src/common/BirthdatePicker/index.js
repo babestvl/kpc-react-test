@@ -53,8 +53,8 @@ class BirthdatePicker extends PureComponent {
 	}
 
 	handleOnDayChange = day => {
-		const { data } = this.props
-		data.Birthday = day
+		const { setDataField } = this.props
+		setDataField('Birthday', day)
 	}
 
 	render() {

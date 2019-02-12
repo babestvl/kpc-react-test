@@ -14,14 +14,20 @@ const StyledDropdown = styled(Dropdown)`
 	}
 `
 
-const DropdownComponent = ({ className, title, optionType, require, data }) => {
+const DropdownComponent = ({
+	className,
+	title,
+	optionType,
+	require,
+	data,
+	setDataField,
+}) => {
 	const fieldName = title.replace(' ', '')
-	data[fieldName] = optionType ? '' : options.gender[0]
 
 	const dropdownOptions = optionType || 'gender'
 
 	const handleOnChange = ({ value }) => {
-		data[fieldName] = value
+		setDataField(fieldName, value)
 	}
 
 	return (

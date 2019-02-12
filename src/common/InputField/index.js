@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import FieldComponent from 'common/FieldComponent'
 import styled from 'styled-components'
 
@@ -14,45 +14,38 @@ const StyledInput = styled.input`
 	width: 200px;
 `
 
-class InputField extends PureComponent {
-	handleOnChange = ({ target: { value } }) => {
-		const { title, setDataField } = this.props
-		const fieldName = title.replace(' ', '')
+const InputField = ({
+	className,
+	title,
+	inputType,
+	require,
+	endingText,
+	setDataField,
+	data,
+}) => {
+	const fieldName = title.replace(' ', '')
+	const handleOnChange = ({ target: { value } }) => {
 		setDataField(fieldName, value)
 	}
 
-	handlePassportInput = ({ target: { value } }) => {
-		const { title, setDataField } = this.props
+	const handlePassportInput = ({ target: { value } }) => {
 		const upperValue = value.toUpperCase()
-		const fieldName = title.replace(' ', '')
 		setDataField(fieldName, upperValue)
 	}
 
-	render() {
-		const {
-			className,
-			title,
-			inputType,
-			require,
-			endingText,
-			data,
-		} = this.props
-		const fieldName = title.replace(' ', '')
-		const passport = inputType === 'passport'
-		const type = inputType === 'salary' ? 'number' : 'text'
-		const value = data[fieldName] || ''
-		return (
-			<FieldComponent className={className} title={title} require={require}>
-				<StyledInput
-					type={type}
-					value={value}
-					maxLength={passport ? 8 : 100}
-					onChange={passport ? this.handlePassportInput : this.handleOnChange}
-				/>
-				<EndingText>{endingText || ''}</EndingText>
-			</FieldComponent>
-		)
-	}
+	const passport = inputType === 'passport'
+	const type = inputType === 'salary' ? 'number' : 'text'
+	return (
+		<FieldComponent className={className} title={title} require={require}>
+			<StyledInput
+				type={type}
+				value={data[fieldName]}
+				maxLength={passport ? 8 : 100}
+				onChange={passport ? handlePassportInput : handleOnChange}
+			/>
+			<EndingText>{endingText || ''}</EndingText>
+		</FieldComponent>
+	)
 }
 
 export default InputField

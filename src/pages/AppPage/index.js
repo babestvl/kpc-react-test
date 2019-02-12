@@ -37,24 +37,49 @@ const requireDataKeys = [
 	'ExpectedSalary',
 ]
 
+const initData = {
+	Uid: generateUid(),
+	Title: 'Mr.',
+	Gender: 'male',
+	Firstname: '',
+	Lastname: '',
+	Birthday: '',
+	CitizenID: ['', '', '', '', ''],
+	Nationality: '',
+	PassportNo: '',
+	ExpectedSalary: '',
+}
+
 class AppPage extends PureComponent {
 	state = {
-		data: {},
+		data: initData,
 	}
 
 	componentDidMount() {
 		const { data } = this.state
 		if (!data.Uid) {
-			this.setState({ data: { Uid: generateUid() } })
+			this.resetData()
 		}
 	}
 
 	resetData = () => {
-		this.setState({ data: { Uid: generateUid() } })
+		this.setState({
+			data: {
+				Uid: generateUid(),
+				Title: 'Mr.',
+				Gender: 'male',
+				Firstname: '',
+				Lastname: '',
+				Birthday: '',
+				CitizenID: ['', '', '', '', ''],
+				Nationality: '',
+				PassportNo: '',
+				ExpectedSalary: '',
+			},
+		})
 	}
 
 	setDataField = (fieldName, value) => {
-		console.log('Set', fieldName, value)
 		this.setState(prevState => ({
 			data: {
 				...prevState.data,
@@ -66,11 +91,11 @@ class AppPage extends PureComponent {
 	handleSubmitButton = async () => {
 		const { data } = this.state
 		const { submitForm } = this.props
-		console.log(data)
 		const validated = requireDataKeys
 			.map(key => data[key] !== undefined && data[key] !== '')
 			.every(item => item === true)
 		if (validated) {
+			console.log('submit', data)
 			await submitForm(data)
 			toast('Success', {
 				position: toast.POSITION.BOTTOM_CENTER,
@@ -88,7 +113,12 @@ class AppPage extends PureComponent {
 
 		return (
 			<InputForm>
-				<TitleDropdown title="Title" data={data} require />
+				<TitleDropdown
+					title="Title"
+					data={data}
+					setDataField={this.setDataField}
+					require
+				/>
 				<NameInputField
 					title="Firstname"
 					data={data}
@@ -101,15 +131,20 @@ class AppPage extends PureComponent {
 					setDataField={this.setDataField}
 					require
 				/>
-				<BirthdayField title="Birthday" data={data} />
+				<BirthdayField
+					title="Birthday"
+					data={data}
+					setDataField={this.setDataField}
+				/>
 				<NationalityDropdown
 					title="Nationality"
 					optionType="nationality"
 					data={data}
+					setDataField={this.setDataField}
 				/>
-				<CitizenInputField data={data} />
-				<GenderRadio data={data} />
-				<PhoneNumberInputField data={data} />
+				<CitizenInputField data={data} setDataField={this.setDataField} />
+				<GenderRadio data={data} setDataField={this.setDataField} />
+				<PhoneNumberInputField data={data} setDataField={this.setDataField} />
 				<PassportInputField
 					title="Passport No"
 					inputType="passport"

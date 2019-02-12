@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import FieldComponent from 'common/FieldComponent'
 import styled from 'styled-components'
 
@@ -12,52 +12,42 @@ const OptionText = styled.span`
 	margin-left: 4px;
 `
 
-class GenderRadioButton extends PureComponent {
-	state = {
-		selectedOption: 'male',
+const GenderRadioButton = ({ className, data, setDataField }) => {
+	const handleOnChange = ({ target: { value } }) => {
+		setDataField('Gender', value)
 	}
 
-	handleOnChange = ({ target: { value } }) => {
-		const { data } = this.props
-		data.Gender = value
-		this.setState({ selectedOption: value })
-	}
-
-	render() {
-		const { selectedOption } = this.state
-		const { className } = this.props
-		return (
-			<FieldComponent className={className} title="Gender">
-				<OptionWrapper>
-					<input
-						type="radio"
-						value="male"
-						checked={selectedOption === 'male'}
-						onChange={this.handleOnChange}
-					/>
-					<OptionText>Male</OptionText>
-				</OptionWrapper>
-				<OptionWrapper>
-					<input
-						type="radio"
-						value="female"
-						checked={selectedOption === 'female'}
-						onChange={this.handleOnChange}
-					/>
-					<OptionText>Female</OptionText>
-				</OptionWrapper>
-				<OptionWrapper>
-					<input
-						type="radio"
-						value="unisex"
-						checked={selectedOption === 'unisex'}
-						onChange={this.handleOnChange}
-					/>
-					<OptionText>Unisex</OptionText>
-				</OptionWrapper>
-			</FieldComponent>
-		)
-	}
+	return (
+		<FieldComponent className={className} title="Gender">
+			<OptionWrapper>
+				<input
+					type="radio"
+					value="male"
+					checked={data.Gender === 'male'}
+					onChange={handleOnChange}
+				/>
+				<OptionText>Male</OptionText>
+			</OptionWrapper>
+			<OptionWrapper>
+				<input
+					type="radio"
+					value="female"
+					checked={data.Gender === 'female'}
+					onChange={handleOnChange}
+				/>
+				<OptionText>Female</OptionText>
+			</OptionWrapper>
+			<OptionWrapper>
+				<input
+					type="radio"
+					value="unisex"
+					checked={data.Gender === 'unisex'}
+					onChange={handleOnChange}
+				/>
+				<OptionText>Unisex</OptionText>
+			</OptionWrapper>
+		</FieldComponent>
+	)
 }
 
 export default GenderRadioButton

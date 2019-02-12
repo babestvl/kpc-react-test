@@ -22,8 +22,8 @@ const GenderRadioButton = ({ className, data, setDataField }) => {
 			<OptionWrapper>
 				<input
 					type="radio"
-					value="male"
-					checked={data.Gender === 'male'}
+					value="Male"
+					checked={data.Gender === 'Male'}
 					onChange={handleOnChange}
 				/>
 				<OptionText>Male</OptionText>
@@ -31,8 +31,8 @@ const GenderRadioButton = ({ className, data, setDataField }) => {
 			<OptionWrapper>
 				<input
 					type="radio"
-					value="female"
-					checked={data.Gender === 'female'}
+					value="Female"
+					checked={data.Gender === 'Female'}
 					onChange={handleOnChange}
 				/>
 				<OptionText>Female</OptionText>
@@ -40,8 +40,8 @@ const GenderRadioButton = ({ className, data, setDataField }) => {
 			<OptionWrapper>
 				<input
 					type="radio"
-					value="unisex"
-					checked={data.Gender === 'unisex'}
+					value="Unisex"
+					checked={data.Gender === 'Unisex'}
 					onChange={handleOnChange}
 				/>
 				<OptionText>Unisex</OptionText>

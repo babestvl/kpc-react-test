@@ -43,7 +43,7 @@ const requireDataKeys = [
 const initData = {
 	Uid: generateUid(),
 	Title: 'Mr.',
-	Gender: 'male',
+	Gender: 'Male',
 	Firstname: '',
 	Lastname: '',
 	Birthday: '',
@@ -73,7 +73,7 @@ class AppPage extends PureComponent {
 			data: {
 				Uid: generateUid(),
 				Title: 'Mr.',
-				Gender: 'male',
+				Gender: 'Male',
 				Firstname: '',
 				Lastname: '',
 				Birthday: '',
@@ -101,7 +101,6 @@ class AppPage extends PureComponent {
 			.map(key => data[key] !== undefined && data[key] !== '')
 			.every(item => item === true)
 		if (validated) {
-			console.log('submit', data)
 			await submitForm(data)
 			toast('Success', {
 				position: toast.POSITION.BOTTOM_CENTER,

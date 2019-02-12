@@ -1,27 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-const Wrapper = styled.div`
-	display: grid;
-	grid-template-columns: 32px repeat(4, 1fr) 15%;
-	align-items: center;
-`
-
-const Item = styled.span`
-	padding: 8px;
-`
-
-const CheckBox = styled.input`
-	height: 16px;
-	margin: 0 auto;
-`
-
-const Button = styled.button`
-	border: none;
-	font-size: 12px;
-	@media (min-width: 768px) {
-		font-size: 16px;
-	}
-`
+import { Wrapper, CheckBox, Button, Item } from './styled'
 
 const ListItem = ({
 	data,

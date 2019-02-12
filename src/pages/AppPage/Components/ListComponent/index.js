@@ -1,29 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import { connect } from 'react-redux'
 import actions from 'common/actions'
 import selectors from 'common/selectors'
 import ListItem from './ListItem'
-
-const Wrapper = styled.div`
-	display: grid;
-	grid-template-rows: 48px repeat(5, 1fr);
-	@media (min-width: 768px) {
-		border: 0.5px solid #bbb;
-	}
-`
-
-const Header = styled.div`
-	display: grid;
-	grid-template-columns: 32px repeat(4, 1fr) 15%;
-	border: 0.5px solid #ccc;
-	background-color: lightblue;
-	align-items: center;
-`
-
-const HeaderContent = styled.span`
-	padding: 8px;
-`
+import { Wrapper, Header, HeaderContent } from './styled'
 
 const ListComponent = ({
 	checkBoxs,

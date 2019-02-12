@@ -6,7 +6,6 @@ import { ToastContainer, toast } from 'react-toastify'
 import ListComponent from './Components/ListComponent'
 import FormComponent from './Components/FormComponent'
 import DataControlComponent from './Components/DataControlComponent'
-
 import { Wrapper } from './styled'
 
 const generateUid = () =>
@@ -151,7 +150,6 @@ class AppPage extends PureComponent {
 		return (
 			<DataControlComponent
 				checkedAll={checkedAll}
-				handleCheckBox={this.handleCheckBox}
 				handlePageClick={this.handlePageClick}
 				handleCheckAllBox={this.handleCheckAllBox}
 			/>

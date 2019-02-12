@@ -12,7 +12,7 @@ export const Header = styled.div`
 	display: grid;
 	grid-template-columns: 32px repeat(4, 1fr) 15%;
 	border: 0.5px solid #ccc;
-	background-color: lightblue;
+	background-color: #ccc;
 	align-items: center;
 `
 

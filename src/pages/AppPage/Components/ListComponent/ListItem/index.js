@@ -20,7 +20,14 @@ const Button = styled.button`
 	font-size: 16px;
 `
 
-const ListItem = ({ data, checked, handleCheckBox, index, handleEditData }) => {
+const ListItem = ({
+	data,
+	checked,
+	handleCheckBox,
+	index,
+	handleEditData,
+	handleDeleteData,
+}) => {
 	const firstname = data.Firstname
 	const lastname = data.Lastname
 	const gender = data.Gender
@@ -42,7 +49,7 @@ const ListItem = ({ data, checked, handleCheckBox, index, handleEditData }) => {
 			<div>
 				<Button onClick={() => handleEditData(data)}>EDIT</Button>
 				<span>/</span>
-				<Button>DELETE</Button>
+				<Button onClick={() => handleDeleteData(data.Uid)}>DELETE</Button>
 			</div>
 		</Wrapper>
 	)

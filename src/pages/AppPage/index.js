@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { List } from 'immutable'
 import actions from 'common/actions'
 import selectors from 'common/selectors'
 import { ToastContainer, toast } from 'react-toastify'
@@ -57,9 +56,9 @@ const initData = {
 class AppPage extends PureComponent {
 	state = {
 		data: initData,
-		showData: List(),
 		checkedAll: false,
 		checkBoxs: [false, false, false, false, false],
+		currentPage: 0,
 	}
 
 	componentDidMount() {
@@ -67,15 +66,6 @@ class AppPage extends PureComponent {
 		if (!data.Uid) {
 			this.resetData()
 		}
-		this.initShowData()
-	}
-
-	initShowData = () => {
-		const { forms } = this.props
-		const showData = forms.filter((item, index) => index >= 0 && index < 5)
-		this.setState({
-			showData: showData,
-		})
 	}
 
 	resetData = () => {
@@ -125,15 +115,8 @@ class AppPage extends PureComponent {
 	}
 
 	handlePageClick = data => {
-		const { forms } = this.props
-		const selected = data.selected
-		const start = Math.ceil(selected * 5)
-		const end = start + 5
-		const showData = forms.filter(
-			(item, index) => index >= start && index < end,
-		)
 		this.setState({
-			showData: showData,
+			currentPage: data.selected,
 		})
 	}
 
@@ -254,11 +237,11 @@ class AppPage extends PureComponent {
 	}
 
 	renderDataSet = () => {
-		const { showData, checkBoxs } = this.state
+		const { checkBoxs, currentPage } = this.state
 		return (
 			<ListComponent
-				showData={showData}
 				checkBoxs={checkBoxs}
+				currentPage={currentPage}
 				handleCheckBox={this.handleCheckBox}
 				handleEditData={this.handleEditData}
 			/>

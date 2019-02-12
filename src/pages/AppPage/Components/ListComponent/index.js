@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import actions from 'common/actions'
+import selectors from 'common/selectors'
 import ListItem from './ListItem'
 
 const Wrapper = styled.div`
@@ -23,12 +26,17 @@ const HeaderContent = styled.span`
 `
 
 const ListComponent = ({
-	showData,
 	checkBoxs,
 	handleCheckBox,
 	handleEditData,
+	forms,
+	currentPage,
+	deleteData,
 }) => {
-	console.log('re-render')
+	const start = Math.ceil(currentPage * 5)
+	const end = start + 5
+	const showData = forms.filter((item, index) => index >= start && index < end)
+
 	return (
 		<Wrapper>
 			<Header>
@@ -47,10 +55,22 @@ const ListComponent = ({
 					checked={checkBoxs[index]}
 					handleCheckBox={handleCheckBox}
 					handleEditData={handleEditData}
+					handleDeleteData={deleteData}
 				/>
 			))}
 		</Wrapper>
 	)
 }
 
-export default ListComponent
+const mapStateToProps = state => ({
+	forms: selectors.getForms(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+	deleteData: data => dispatch(actions.deleteForm(data)),
+})
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(ListComponent)

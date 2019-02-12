@@ -1,4 +1,5 @@
 export default {
 	INIT_STORE: 'INIT_STORE',
 	SUBMIT_FORM: 'SUBMIT_FORM',
+	DELETE_FORM: 'DELETE_FORM',
 }

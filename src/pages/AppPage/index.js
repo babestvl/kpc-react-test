@@ -6,21 +6,12 @@ import { ToastContainer, toast } from 'react-toastify'
 import ReactPaginate from 'react-paginate'
 import Button from 'common/Button'
 import ListComponent from './Components/ListComponent'
+import FormComponent from './Components/FormComponent'
+
 import {
 	Wrapper,
-	InputForm,
-	TitleDropdown,
-	NameInputField,
-	BirthdayField,
-	NationalityDropdown,
-	CitizenInputField,
-	GenderRadio,
-	PassportInputField,
-	SalaryInputField,
-	PhoneNumberInputField,
-	SubmitButton,
-	PaginateWrapper,
 	DataControl,
+	PaginateWrapper,
 	ControlWrapper,
 	SelectAllText,
 	CheckBox,
@@ -148,55 +139,11 @@ class AppPage extends PureComponent {
 		const { data } = this.state
 
 		return (
-			<InputForm>
-				<TitleDropdown
-					title="Title"
-					data={data}
-					setDataField={this.setDataField}
-					require
-				/>
-				<NameInputField
-					title="Firstname"
-					data={data}
-					setDataField={this.setDataField}
-					require
-				/>
-				<NameInputField
-					title="Lastname"
-					data={data}
-					setDataField={this.setDataField}
-					require
-				/>
-				<BirthdayField
-					title="Birthday"
-					data={data}
-					setDataField={this.setDataField}
-				/>
-				<NationalityDropdown
-					title="Nationality"
-					optionType="nationality"
-					data={data}
-					setDataField={this.setDataField}
-				/>
-				<CitizenInputField data={data} setDataField={this.setDataField} />
-				<GenderRadio data={data} setDataField={this.setDataField} />
-				<PhoneNumberInputField data={data} setDataField={this.setDataField} />
-				<PassportInputField
-					title="Passport No"
-					inputType="passport"
-					setDataField={this.setDataField}
-					data={data}
-				/>
-				<SalaryInputField
-					title="Expected Salary"
-					inputType="salary"
-					endingText="THB"
-					data={data}
-					setDataField={this.setDataField}
-					require
-				/>
-				<SubmitButton onClick={this.handleSubmitButton} text="SUBMIT" />
-			</InputForm>
+			<FormComponent
+				data={data}
+				setDataField={this.setDataField}
+				handleSubmitButton={this.handleSubmitButton}
+			/>
 		)
 	}
 

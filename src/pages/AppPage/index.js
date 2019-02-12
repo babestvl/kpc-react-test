@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import actions from 'common/actions'
 import selectors from 'common/selectors'
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import ReactPaginate from 'react-paginate'
+import ListComponent from 'common/ListComponent'
+import Button from 'common/Button'
 import {
 	Wrapper,
 	InputForm,
@@ -17,6 +19,8 @@ import {
 	SalaryInputField,
 	PhoneNumberInputField,
 	SubmitButton,
+	PaginateWrapper,
+	DataControl,
 } from './styled'
 
 const generateUid = () =>
@@ -34,32 +38,44 @@ const requireDataKeys = [
 ]
 
 class AppPage extends PureComponent {
-	data = {}
+	state = {
+		data: {},
+	}
 
 	componentDidMount() {
-		if (!this.data.Uid) {
-			this.data.Uid = generateUid()
+		const { data } = this.state
+		if (!data.Uid) {
+			this.setState({ data: { Uid: generateUid() } })
 		}
 	}
 
 	resetData = () => {
-		this.data = {
-			Uid: generateUid(),
-		}
+		this.setState({ data: { Uid: generateUid() } })
+	}
+
+	setDataField = (fieldName, value) => {
+		console.log('Set', fieldName, value)
+		this.setState(prevState => ({
+			data: {
+				...prevState.data,
+				[fieldName]: value,
+			},
+		}))
 	}
 
 	handleSubmitButton = async () => {
+		const { data } = this.state
 		const { submitForm } = this.props
+		console.log(data)
 		const validated = requireDataKeys
-			.map(key => this.data[key] !== undefined && this.data[key] !== '')
+			.map(key => data[key] !== undefined && data[key] !== '')
 			.every(item => item === true)
 		if (validated) {
-			await submitForm(this.data)
+			await submitForm(data)
 			toast('Success', {
 				position: toast.POSITION.BOTTOM_CENTER,
 			})
 			this.resetData()
-			this.forceUpdate()
 		} else {
 			toast('Input all required fills', {
 				position: toast.POSITION.BOTTOM_CENTER,
@@ -67,14 +83,24 @@ class AppPage extends PureComponent {
 		}
 	}
 
-	renderInputForm() {
-		const { data } = this
+	renderInputForm = () => {
+		const { data } = this.state
 
 		return (
 			<InputForm>
 				<TitleDropdown title="Title" data={data} require />
-				<NameInputField title="Firstname" data={data} require />
-				<NameInputField title="Lastname" data={data} require />
+				<NameInputField
+					title="Firstname"
+					data={data}
+					setDataField={this.setDataField}
+					require
+				/>
+				<NameInputField
+					title="Lastname"
+					data={data}
+					setDataField={this.setDataField}
+					require
+				/>
 				<BirthdayField title="Birthday" data={data} />
 				<NationalityDropdown
 					title="Nationality"
@@ -87,6 +113,7 @@ class AppPage extends PureComponent {
 				<PassportInputField
 					title="Passport No"
 					inputType="passport"
+					setDataField={this.setDataField}
 					data={data}
 				/>
 				<SalaryInputField
@@ -94,17 +121,52 @@ class AppPage extends PureComponent {
 					inputType="salary"
 					endingText="THB"
 					data={data}
+					setDataField={this.setDataField}
 					require
 				/>
-				<SubmitButton onClick={this.handleSubmitButton} />
+				<SubmitButton onClick={this.handleSubmitButton} text="SUBMIT" />
 			</InputForm>
 		)
+	}
+
+	renderDataControl = () => {
+		const { forms } = this.props
+		const pageCount = Math.ceil(forms.length / 5)
+
+		return (
+			<DataControl>
+				<div>
+					<Button text="DELETE" />
+				</div>
+				<PaginateWrapper>
+					<ReactPaginate
+						previousLabel="previous"
+						nextLabel="next"
+						breakLabel="..."
+						breakClassName="break-me"
+						pageCount={pageCount}
+						marginPagesDisplayed={2}
+						pageRangeDisplayed={5}
+						onPageChange={this.handlePageClick}
+						containerClassName="pagination"
+						subContainerClassName="pages pagination"
+						activeClassName="active"
+					/>
+				</PaginateWrapper>
+			</DataControl>
+		)
+	}
+
+	renderDataSet = () => {
+		return <ListComponent />
 	}
 
 	render() {
 		return (
 			<Wrapper>
 				{this.renderInputForm()}
+				{this.renderDataControl()}
+				{this.renderDataSet()}
 				<ToastContainer />
 			</Wrapper>
 		)

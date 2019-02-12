@@ -3,7 +3,6 @@ import Dropdown from 'react-dropdown'
 import styled from 'styled-components'
 import FieldComponent from 'common/FieldComponent'
 import options from './options'
-import 'react-dropdown/style.css'
 
 const StyledDropdown = styled(Dropdown)`
 	.Dropdown-placeholder {

@@ -1,7 +1,6 @@
 import React from 'react'
 import FieldComponent from 'common/FieldComponent'
 import PhoneInput from 'react-phone-number-input'
-import 'react-phone-number-input/style.css'
 
 const PhoneNumberInput = ({ className, data }) => (
 	<FieldComponent className={className} title="Mobile Phone" require>

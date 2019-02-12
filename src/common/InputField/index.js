@@ -15,39 +15,39 @@ const StyledInput = styled.input`
 `
 
 class InputField extends PureComponent {
-	state = {
-		data: '',
-	}
-
-	handleOnChange = inputType => ({ target: { value } }) => {
-		const { data: propsData, title } = this.props
+	handleOnChange = ({ target: { value } }) => {
+		const { title, setDataField } = this.props
 		const fieldName = title.replace(' ', '')
-		propsData[fieldName] = value
-		this.setState({ data: value })
+		setDataField(fieldName, value)
 	}
 
 	handlePassportInput = ({ target: { value } }) => {
+		const { title, setDataField } = this.props
 		const upperValue = value.toUpperCase()
-		const { data: propsData, title } = this.props
 		const fieldName = title.replace(' ', '')
-		propsData[fieldName] = value
-		this.setState({ data: upperValue })
+		setDataField(fieldName, upperValue)
 	}
 
 	render() {
-		const { data } = this.state
-		const { className, title, inputType, require, endingText } = this.props
+		const {
+			className,
+			title,
+			inputType,
+			require,
+			endingText,
+			data,
+		} = this.props
+		const fieldName = title.replace(' ', '')
 		const passport = inputType === 'passport'
 		const type = inputType === 'salary' ? 'number' : 'text'
+		const value = data[fieldName] || ''
 		return (
 			<FieldComponent className={className} title={title} require={require}>
 				<StyledInput
 					type={type}
-					value={data}
+					value={value}
 					maxLength={passport ? 8 : 100}
-					onChange={
-						passport ? this.handlePassportInput : this.handleOnChange(inputType)
-					}
+					onChange={passport ? this.handlePassportInput : this.handleOnChange}
 				/>
 				<EndingText>{endingText || ''}</EndingText>
 			</FieldComponent>

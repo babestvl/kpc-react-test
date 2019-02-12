@@ -5,11 +5,12 @@ const StyledButton = styled.button`
 	width: 100%;
 	height: 100%;
 	font-size: 20px;
+	border-radius: 4px;
 `
 
-const Button = ({ className, onClick }) => (
+const Button = ({ text, className, onClick }) => (
 	<div className={className}>
-		<StyledButton onClick={onClick}>SUBMIT</StyledButton>
+		<StyledButton onClick={onClick}>{text}</StyledButton>
 	</div>
 )
 

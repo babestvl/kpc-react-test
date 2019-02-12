@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import FieldComponent from 'common/FieldComponent'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import { formatDate, parseDate } from 'react-day-picker/moment'
-import 'react-day-picker/lib/style.css'
 
 const Form = styled.form``
 

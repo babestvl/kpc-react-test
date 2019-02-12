@@ -1,4 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
+import 'react-toastify/dist/ReactToastify.css'
+import 'react-dropdown/style.css'
+import 'react-day-picker/lib/style.css'
+import 'react-phone-number-input/style.css'
 
 export const GlobalStyle = createGlobalStyle`
   html, body, #root {

@@ -5,6 +5,7 @@ import BirthdatePicker from 'common/BirthdatePicker'
 import CitizenField from 'common/CitizenField'
 import GenderRadioButton from 'common/GenderRadioButton'
 import PhoneNumberInput from 'common/PhoneNumberInput'
+
 import Button from 'common/Button'
 
 export const Wrapper = styled.div`
@@ -24,6 +25,13 @@ export const InputForm = styled.div`
 		grid-column-gap: 8px;
 		padding: 16px;
 	}
+`
+
+export const DataControl = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 8px;
 `
 
 export const dataCollection = styled.div`
@@ -68,4 +76,29 @@ export const SalaryInputField = styled(InputField)`
 
 export const SubmitButton = styled(Button)`
 	grid-column: span 1;
+`
+
+export const PaginateWrapper = styled.div`
+	cursor: pointer;
+	.pagination {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		margin: 0 2px;
+		padding: 4px 10px;
+		border: 1px solid #17bebb;
+		border-radius: 2px;
+	}
+
+	li.active {
+		background-color: #17bebb;
+	}
+
+	a {
+		outline: none;
+	}
 `
